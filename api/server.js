@@ -5,7 +5,11 @@ const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
 const { MongoClient } = require('mongodb');
 
-const url = 'mongodb://127.0.0.1/cop2836'; // computer localhost mapping not working (from jenn the tutor)
+require('dotenv').config();
+
+const url = process.env.DB_URL || 'mongodb://127.0.0.1/cop2836'; // computer localhost mapping not working (from jenn the tutor)
+
+const port =  process.env.API_SERVER_PORT || 3000;
 
 let db;
 
@@ -41,6 +45,7 @@ function validateIssue(issue) {
 }
 
 const fs = require('fs');
+
 
 let aboutMessage = "Issue Tracker API v1.0";
 
@@ -96,7 +101,7 @@ async function issueAdd(_, { issue }) {
 }
 
 const server = new ApolloServer({
-  typeDefs: fs.readFileSync('./server/schema.graphql', 'utf-8'),
+  typeDefs: fs.readFileSync('schema.graphql', 'utf-8'),
   resolvers,
   formatErrors: error => {
     console.log(error);
@@ -106,15 +111,13 @@ const server = new ApolloServer({
 
 const app = express();
 
-app.use(express.static('public'));
-
 server.applyMiddleware({ app, path: '/graphql' });
 
 (async function () {
   try {
     await connectToDb();
-    app.listen(3000, function() {
-      console.log('App started on port 3000');
+    app.listen(port, function() {
+      console.log(`API server started on port ${port}`);
     });
   }
   catch (err) {

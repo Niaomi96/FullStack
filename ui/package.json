@@ -2,9 +2,9 @@
   "name": "cop2836",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon -w server -e js,graphql server/server.js",
+    "start": "nodemon -w .env uiserver.js",
     "compile": "babel src --out-dir public",
     "watch": "babel src --out-dir public --watch --verbose",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,10 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server-express": "^2.9.15",
+    "dotenv": "^6.2.0",
     "express": "^4.17.1",
-    "graphql": "^0.13.2",
-    "mongodb": "^3.7.3",
     "nodemon": "^1.19.4"
   },
   "devDependencies": {
