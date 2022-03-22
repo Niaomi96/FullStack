@@ -7,7 +7,8 @@
     "start": "nodemon -e js,graphql -w . -w .env server.js",
     "compile": "babel src --out-dir public",
     "watch": "babel src --out-dir public --watch --verbose",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslent ."
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,9 @@
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
-    "@babel/preset-react": "^7.7.4"
+    "@babel/preset-react": "^7.7.4",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.25.4"
   }
 }
